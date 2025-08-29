@@ -1,135 +1,238 @@
-# Turborepo starter
+# Bun Stack Starter Pack
 
-This Turborepo starter is maintained by the Turborepo core team.
+Un monorepo moderno centrado en la **mejor experiencia de desarrollo** y **buenas prácticas** con máxima **posibilidad de personalización**. Este stack está diseñado para proporcionar un entorno de desarrollo robusto, rápido, escalable y type-safety 💙.
 
-## Using this example
+## 🚀 Características Principales
 
-Run the following command:
+### 🛠️ Herramientas de Desarrollo
 
-```sh
-npx create-turbo@latest
+- **[Husky](https://typicode.github.io/husky/)** - Git hooks automáticos para mantener la calidad del código
+- **[Commitlint](https://commitlint.js.org/)** - Linter de convenciones de commits siguiendo [Conventional Commits](https://www.conventionalcommits.org/)
+- **[Lint-staged](https://github.com/okonet/lint-staged)** - Ejecuta linters automáticamente en archivos staged
+- **[Biome](https://biomejs.dev/)** - Linter y formateador ultrarrápido escrito en Rust 🦀
+- **[Turborepo](https://turbo.build/repo)** - Administrador de workspaces para monorepos con caché inteligente
+
+### 📦 Stack Tecnológico
+
+- **Runtime**: [Bun](https://bun.sh) - Runtime JavaScript ultrarrápido
+- **Monorepo**: [Turborepo](https://turbo.build/repo) con workspaces
+- **API**: [Elysia](https://elysiajs.com/) con documentación Swagger automática y su rpc: Eden
+- **Frontend**: React + TypeScript + Vite/Next.js
+- **Base de datos**: PostgreSQL con [Drizzle ORM](https://orm.drizzle.team/)
+- **Estilos**: Tailwind CSS + shadcn/ui
+
+## 📋 Requisitos Previos
+
+Antes de comenzar, asegúrate de tener instalado:
+
+1. **[Bun](https://bun.sh)** - Instálalo desde [bun.sh](https://bun.sh)
+2. **[Docker](https://docker.com)** - Para la base de datos local
+
+### 🎯 Extensiones de VS Code Recomendadas
+
+Si usas **Visual Studio Code**, este proyecto incluye extensiones recomendadas que mejorarán tu experiencia de desarrollo. VS Code te sugerirá automáticamente instalarlas, o puedes instalarlas manualmente:
+
+- **[Biome](https://marketplace.visualstudio.com/items?itemName=biomejs.biome)** - Linter y formateador integrado
+- **[Conventional Commits](https://marketplace.visualstudio.com/items?itemName=vivaxy.vscode-conventional-commits)** - Asistente para commits convencionales
+- **[Pretty TypeScript Errors](https://marketplace.visualstudio.com/items?itemName=yoavbls.pretty-ts-errors)** - Errores de TypeScript más legibles
+- **[Version Lens](https://marketplace.visualstudio.com/items?itemName=pflannery.vscode-versionlens)** - Información de versiones de paquetes
+- **[Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)** - Autocompletado para Tailwind
+- **[GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)** - Herramientas avanzadas de Git
+- **[Import Cost](https://marketplace.visualstudio.com/items?itemName=wix.vscode-import-cost)** - Muestra el tamaño de las importaciones
+- **[Color Highlight](https://marketplace.visualstudio.com/items?itemName=naumovs.color-highlight)** - Resalta colores en el código
+
+Para instalar todas las extensiones recomendadas de una vez:
+1. Abre VS Code en la carpeta del proyecto
+2. Presiona `Ctrl+Shift+P` (o `Cmd+Shift+P` en Mac)
+3. Busca "Extensions: Show Recommended Extensions"
+4. Haz clic en "Install Workspace Recommended Extensions"
+
+## 🚀 Inicio Rápido
+
+### 1. Clonar e Instalar
+
+```bash
+git clone <tu-repositorio>
+cd bun-stack-starter-pack
+bun install
 ```
 
-## What's inside?
+### 2. Configuración Automática (Recomendado)
 
-This Turborepo includes the following packages/apps:
+Para la primera configuración, puedes usar nuestro script automatizado:
 
-### Apps and Packages
+```bash
+bun run setup
+```
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+Este script automáticamente:
+- ✅ Instala todas las dependencias
+- ✅ Verifica que Docker esté corriendo
+- ✅ Inicia la base de datos local
+- ✅ Migra el esquema a la base de datos
+- ✅ Te prepara para desarrollo
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+### 3. Configuración Manual
 
-### Utilities
+Si prefieres hacerlo paso a paso:
 
-This Turborepo has some additional tools already setup for you:
+```bash
+# 1. Instalar dependencias en la raíz
+bun install
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+# 2. Iniciar entorno de desarrollo
+bun dev
+
+# 3. En otra terminal, migrar la base de datos
+cd apps/api
+bun db:push
+```
+
+### 4. ¡Listo para Desarrollar!
+
+Una vez completada la configuración:
+
+- 🌐 Las aplicaciones estarán disponibles en diferentes puertos (revisa la terminal)
+- 📚 La documentación de la API estará en: `http://localhost:5173/api/v1/swagger` (o puerto 8000)
+- 🔄 Todos los cambios se recargarán automáticamente
+
+## 📁 Estructura del Proyecto
+
+```
+bun-stack-starter-pack/
+├── apps/
+│   ├── api/          # API con Elysia + Drizzle ORM
+│   ├── db/           # Configuración de Docker para PostgreSQL
+│   ├── docs/         # Documentación con Next.js
+│   ├── next-web/     # Aplicación web con Next.js
+│   └── ts-web/       # Aplicación web con Vite + React
+├── packages/
+│   ├── typescript-config/  # Configuraciones de TypeScript compartidas
+│   └── ui/           # Biblioteca de componentes compartidos
+└── scripts/
+    └── develop.ts    # Script de configuración automática
+```
+
+### Apps y Packages
+
+- **`api`**: API RESTful con [Elysia](https://elysiajs.com/) y documentación Swagger automática
+- **`db`**: Configuración de base de datos PostgreSQL con Docker
+- **`docs`**: Documentación del proyecto con [Next.js](https://nextjs.org/)
+- **`next-web`**: Aplicación web con [Next.js](https://nextjs.org/)
+- **`ts-web`**: Aplicación web con [Vite](https://vitejs.dev/) + React + TypeScript
+- **`@workspace/ui`**: Biblioteca de componentes React compartidos con [shadcn/ui](https://ui.shadcn.com/)
+- **`@workspace/typescript-config`**: Configuraciones de TypeScript reutilizables
+
+## 🔧 Comandos Disponibles
+
+### Desarrollo
+
+```bash
+# Iniciar todas las aplicaciones en modo desarrollo
+bun dev
+
+# Iniciar una aplicación específica
+bun dev --filter=api
+bun dev --filter=ts-web
+bun dev --filter=next-web
+```
 
 ### Build
 
-To build all apps and packages, run the following command:
+```bash
+# Construir todas las aplicaciones
+bun run build
 
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
+# Construir una aplicación específica
+bun run build --filter=docs
 ```
 
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+### Base de Datos
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
+```bash
+# Desde apps/api
+cd apps/api
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
+# Migrar esquema
+bun run db:push
 
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
+# Generar migraciones
+bun run db:generate
 ```
 
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+### Linting y Formateo
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
+```bash
+# Ejecutar Biome (linter + formateador)
+bun run lint
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
+# Verificar tipos de TypeScript
+bun run check-types
 ```
 
-### Remote Caching
+## 🎯 Configuración de Git Hooks
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+Este proyecto viene preconfigurado con **Husky** para automatizar la calidad del código:
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+- **Pre-commit**: Ejecuta automáticamente el linter en archivos modificados
+- **Commit-msg**: Valida que los mensajes de commit sigan las [convenciones estándar](https://www.conventionalcommits.org/)
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+### Ejemplos de commits válidos:
 
+```bash
+git commit -m "feat: añadir autenticación de usuarios"
+git commit -m "fix: corregir error en validación de formularios"
+git commit -m "docs: actualizar documentación de la API"
 ```
-cd my-turborepo
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
+## 🔄 Caché Remoto de Turborepo
+
+Turborepo puede usar [Caché Remoto](https://turborepo.com/docs/core-concepts/remote-caching) para compartir artefactos de construcción entre máquinas:
+
+```bash
+# Autenticarse con Vercel
 turbo login
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
+# Vincular proyecto al caché remoto
 turbo link
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
 ```
 
-## Useful Links
+## 📚 Enlaces Útiles
 
-Learn more about the power of Turborepo:
+### Documentación de Herramientas
 
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+- **[Husky](https://typicode.github.io/husky/)** - Git hooks
+- **[Commitlint](https://commitlint.js.org/)** - Linter de commits
+- **[Lint-staged](https://github.com/okonet/lint-staged)** - Pre-commit hooks
+- **[Biome](https://biomejs.dev/)** - Linter y formateador
+
+### Documentación del Stack Tecnológico
+
+- **[Next.js](https://nextjs.org/docs)** - Framework de React para producción
+- **[Elysia](https://elysiajs.com/introduction.html)** - Framework web ergonómico para Bun
+- **[Drizzle ORM](https://orm.drizzle.team/docs/overview)** - ORM type-safe para TypeScript
+- **[shadcn/ui](https://ui.shadcn.com/docs)** - Componentes UI reutilizables
+- **[TanStack Query](https://tanstack.com/query/latest/docs/framework/react/overview)** - Manejo de estado del servidor
+- **[TanStack Router](https://tanstack.com/router/latest/docs/framework/react/overview)** - Router type-safe para React
+- **[TanStack Table](https://tanstack.com/table/latest/docs/framework/react/overview)** - Tablas flexibles para React
+- **[Tailwind CSS](https://tailwindcss.com/docs)** - Framework de CSS utility-first
+
+### Documentación de Turborepo
+
+- [Tareas](https://turborepo.com/docs/crafting-your-repository/running-tasks)
+- [Caché](https://turborepo.com/docs/crafting-your-repository/caching)
+- [Filtros](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
+- [Configuración](https://turborepo.com/docs/reference/configuration)
+- [CLI](https://turborepo.com/docs/reference/command-line-reference)
+
+## 🤝 Contribuir
+
+1. Fork el proyecto
+2. Crea una rama para tu feature (`git checkout -b feature/nueva-caracteristica`)
+3. Commit tus cambios (`git commit -m 'feat: añadir nueva característica'`)
+4. Push a la rama (`git push origin feature/nueva-caracteristica`)
+5. Abre un Pull Request
+
+## 📄 Licencia
+
+Este proyecto está bajo la licencia MIT. Ver el archivo `LICENSE` para más detalles.

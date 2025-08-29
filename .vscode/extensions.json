@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+    "ms-vscode-remote.vscode-remote-extensionpack",
+    "biomejs.biome",
+    "vivaxy.vscode-conventional-commits",
+    "yoavbls.pretty-ts-errors",
+    "pflannery.vscode-versionlens",
+    "bradlc.vscode-tailwindcss",
+    "eamodio.gitlens",
+    "wix.vscode-import-cost",
+    "naumovs.color-highlight"
+  ]
+}
