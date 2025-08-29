@@ -28,6 +28,45 @@ Antes de comenzar, asegúrate de tener instalado:
 1. **[Bun](https://bun.sh)** - Instálalo desde [bun.sh](https://bun.sh)
 2. **[Docker](https://docker.com)** - Para la base de datos local
 
+## 🧪 Tests con Bun
+
+Bun incluye un runner de tests ultrarrápido compatible con Jest, permitiendo escribir pruebas en TypeScript o JavaScript con una API familiar. Soporta hooks de ciclo de vida, snapshots, mocks, modo watch y pruebas de UI/DOM. Para ejecutar los tests simplemente usa:
+
+```bash
+bun test
+```
+
+Puedes filtrar archivos o nombres de tests, usar reportes JUnit para CI/CD, y aprovechar integración directa con GitHub Actions. Ejemplo básico:
+
+```ts
+import { expect, test } from "bun:test";
+test("2 + 2", () => {
+    expect(2 + 2).toBe(4);
+});
+```
+
+Más detalles en la [documentación oficial de Bun](https://bun.com/docs/test/writing).
+
+## 🕸️ Microservicios
+
+Puedes agregar microservicios en cualquier lenguaje, solo asegúrate de incluir un `package.json` en la carpeta del microservicio con los scripts `dev` y/o `build` para integrarlo al monorepo.
+
+Para la comunicación entre microservicios:
+
+- **gRPC** para comunicación síncrona
+- **RabbitMQ** o **Kafka** para comunicación asíncrona
+
+Esto permite máxima flexibilidad tecnológica y escalabilidad en tu arquitectura.
+## ⚙️ Elementos básicos de .github
+
+Puedes mejorar la colaboración y automatización del proyecto agregando archivos en la carpeta `.github/`:
+
+- **Plantillas de Pull Request**: Facilitan revisiones y estandarizan la información. Ejemplo: `.github/pull_request_template.md`. [Guía oficial](https://docs.github.com/es/communities/using-templates-for-issues-and-pull-requests/creating-a-pull-request-template-for-your-repository)
+- **Plantillas de Issues**: Ayudan a reportar bugs o sugerir mejoras de forma estructurada. Ejemplo: `.github/ISSUE_TEMPLATE/bug_report.md`. [Guía oficial](https://docs.github.com/es/communities/using-templates-for-issues-and-pull-requests/about-issue-and-pull-request-templates)
+- **Workflows de CI/CD**: Automatiza tests, builds y despliegues usando GitHub Actions. Ejemplo: `.github/workflows/ci.yml` para ejecutar `bun test` en cada push. [Documentación oficial de GitHub Actions](https://docs.github.com/es/actions)
+
+Esto ayuda a mantener calidad, facilitar contribuciones y automatizar procesos clave en el desarrollo.
+
 ### 🎯 Extensiones de VS Code Recomendadas
 
 Si usas **Visual Studio Code**, este proyecto incluye extensiones recomendadas que mejorarán tu experiencia de desarrollo. VS Code te sugerirá automáticamente instalarlas, o puedes instalarlas manualmente:
